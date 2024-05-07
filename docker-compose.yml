@@ -1,0 +1,43 @@
+version: "3.7"
+
+services:
+  queue-service-1:
+    build:
+      context: .
+    depends_on:
+      queue-redis:
+        condition: service_healthy
+    environment:
+      CACHE_REDIS_HOST: "queue-redis"
+      CACHE_REDIS_PASSWORD: "12345678"
+      CACHE_REDIS_PORT: 6379
+    ports:
+      - 3010:3000
+    volumes:
+      - ./src:/app/src
+  queue-service-2:
+    build:
+      context: .
+    depends_on:
+      queue-redis:
+        condition: service_healthy
+    environment:
+      CACHE_REDIS_HOST: "queue-redis"
+      CACHE_REDIS_PASSWORD: "12345678"
+      CACHE_REDIS_PORT: 6379
+    ports:
+      - 3011:3000
+    volumes:
+      - ./src:/app/src
+  queue-redis:
+    image: redis
+    ports:
+      - 6379:6379
+    command: >
+      --requirepass 12345678
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      start_period: 10s
+      interval: 5s
+      timeout: 10s
+      retries: 10

@@ -1,0 +1,116 @@
+{
+	"info": {
+		"_postman_id": "8c294911-d8fe-4da9-b8d2-945c5f8bc17c",
+		"name": "Queue service",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29382578"
+	},
+	"item": [
+		{
+			"name": "Produce message 1 instance",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"field\":\"Object from 1 instance\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl-1}}/api/testName",
+					"host": [
+						"{{baseUrl-1}}"
+					],
+					"path": [
+						"api",
+						"testName"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Produce message 2 instance",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"field\":\"Object from 2 instance\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl-2}}/api/testName",
+					"host": [
+						"{{baseUrl-2}}"
+					],
+					"path": [
+						"api",
+						"testName"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Subscribe to queue",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl-1}}/api/testName",
+					"host": [
+						"{{baseUrl-1}}"
+					],
+					"path": [
+						"api",
+						"testName"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl-2",
+			"value": "http://localhost:3011",
+			"type": "string"
+		},
+		{
+			"key": "baseUrl-1",
+			"value": "http://localhost:3010",
+			"type": "string"
+		}
+	]
+}

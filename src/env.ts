@@ -1,0 +1,2 @@
+export const { CACHE_REDIS_HOST, CACHE_REDIS_PASSWORD, CACHE_REDIS_PORT } =
+  process.env;
